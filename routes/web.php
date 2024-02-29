@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StagiaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[StagiaireController::class,'index']);
+
+
+
+Route::get('/notes/create', [NoteController::class, 'create'])->name('notes.create');
+Route::post('/notes', [NoteController::class, 'store'])->name('notes.store');
+Route::get('/stagiaire/detail/{id}',[StagiaireController::class,'show'])->name('stagiaire.detail');
